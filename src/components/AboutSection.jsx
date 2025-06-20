@@ -1,6 +1,26 @@
 import { Code, Cpu, Layers } from "lucide-react";
+import { useToast } from "../hooks/use-toast";
 
 export const AboutSection = () => {
+  const { toast } = useToast();
+
+  const copyEmailToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText("spaloma.v1@gmail.com");
+      toast({
+        title: "Email copied!",
+        description: "spaloma.v1@gmail.com has been copied to your clipboard.",
+      });
+    } catch (err) {
+      console.error("Failed to copy email to clipboard:", err);
+      toast({
+        title: "Copy failed",
+        description: "Unable to copy email to clipboard.",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <section id="about" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">
@@ -29,9 +49,9 @@ export const AboutSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <a href="#contact" className="cosmic-button">
+              <button onClick={copyEmailToClipboard} className="cosmic-button">
                 Get In Touch
-              </a>
+              </button>
 
               <a
                 href="#resume"
