@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
-import { ThemeToggle } from "./ThemeToggle";
+import { useToast } from "../hooks/use-toast";
 
 const navItems = [
   { name: "Home", href: "#hero" },
@@ -13,6 +13,7 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const { toast } = useToast();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +42,23 @@ export const Navbar = () => {
     }
 
     setIsDarkMode(newDarkMode);
+  };
+
+  const copyEmailToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText("spaloma.v1@gmail.com");
+      toast({
+        title: "Email copied!",
+        description: "spaloma.v1@gmail.com has been copied to your clipboard.",
+      });
+    } catch (err) {
+      console.error("Failed to copy email to clipboard:", err);
+      toast({
+        title: "Copy failed",
+        description: "Unable to copy email to clipboard.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -72,6 +90,12 @@ export const Navbar = () => {
               {item.name}
             </a>
           ))}
+          <button
+            onClick={copyEmailToClipboard}
+            className="text-foreground/80 hover:text-primary transition-colors duration-300"
+          >
+            Contact
+          </button>
         </div>
 
         {/* mobile nav button */}
@@ -104,6 +128,15 @@ export const Navbar = () => {
                 {item.name}
               </a>
             ))}
+            <button
+              onClick={() => {
+                copyEmailToClipboard();
+                setIsMenuOpen(false);
+              }}
+              className="text-foreground/80 hover:text-primary transition-colors duration-300"
+            >
+              Contact
+            </button>
             {/* Theme toggle inside mobile menu */}
             <div className="pt-4 border-t border-foreground/20">
               <button
