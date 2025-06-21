@@ -20,7 +20,8 @@ export const HeroSection = () => {
             </span>
           </h1>
 
-          <div className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto opacity-0 animate-fade-in-delay-3">
+          {/* Desktop version - full content */}
+          <div className="hidden md:block text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto opacity-0 animate-fade-in-delay-3">
             <p className="mb-4">
               Hello, I'm Santiago Palomares, a Software Engineering graduate of{" "}
               <a
@@ -105,12 +106,57 @@ export const HeroSection = () => {
 
             <p>
               Beyond coding, I'm deeply committed to community and collaboration
-              through Google Developer Student Club, Peterworks Drones, and the
-              Distributed Databases Research Lab. When I'm not debugging code or
-              fine-tuning algorithms, you'll find me exploring Orange County's
-              incredible food scene, staying active, or planning my next
-              adventure. If you're ever in the area and want to chat about tech
-              over great food, I know just the place!
+              through Google Developer Student Club, and Peterworks Drones. When
+              I'm not debugging code or fine-tuning algorithms, you'll find me
+              Rock Climbing at Hanger 18, Fishing at Newport Pier, or playing
+              Magic the gathering with friends.
+            </p>
+          </div>
+
+          {/* Mobile version - condensed content */}
+          <div className="md:hidden text-lg text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-3">
+            <p className="mb-4">
+              Software Engineering graduate from{" "}
+              <a
+                href="https://www.ics.uci.edu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                UC Irvine
+              </a>{" "}
+              passionate about full-stack development and systems engineering. I
+              build production ready applications that solve real world
+              problems.
+            </p>
+
+            <p className="mb-4">
+              From developing{" "}
+              <a
+                href="https://github.com/santiagopalomares/CellScope"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                research tools
+              </a>{" "}
+              with 92% accuracy to creating Android apps for{" "}
+              <a
+                href="https://idtechproducts.com/educating-through-innovation-id-techs-capstone-journey-with-students-at-uci/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                ID Tech Products
+              </a>{" "}
+              that generated 15+ sales leads, I'm driven by technology's
+              potential to make a meaningful impact.
+            </p>
+
+            <p>
+              When I'm not debugging code or fine-tuning algorithms, you'll find
+              me Rock Climbing at Hanger 18, Fishing at Newport Pier, or playing
+              Magic the gathering with friends.
             </p>
           </div>
 
