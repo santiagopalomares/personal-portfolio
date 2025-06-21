@@ -20,16 +20,99 @@ export const HeroSection = () => {
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            I bridge hardware and software with exceptional full-stack
-            capabilities, designing intuitive interfaces that connect seamlessly
-            with complex backend systems. My systems engineering mindset allows
-            me to tackle technical challenges through determination and rapid
-            learning, creating digital experiences that are both elegant and
-            intelligently architected. I'm seeking a forward-thinking team where
-            my unique blend of front-end finesse and systems architecture
-            expertise can develop technology that makes a meaningful impact.
-          </p>
+          <div className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto opacity-0 animate-fade-in-delay-3">
+            <p className="mb-4">
+              Hello, I'm Santiago Palomares, a Software Engineering graduate of{" "}
+              <a
+                href="https://www.ics.uci.edu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                UC Irvine
+              </a>{" "}
+              and a passionate Software Engineer fascinated by full-stack
+              development, and robotics systems. Growing up in the Santa Ana
+              area, I learned that persistence and innovation can turn any
+              technical challenge into an opportunity – values that have driven
+              my journey in technology.
+            </p>
+
+            <p className="mb-4">
+              As a developer and engineer, I've had the privilege of working on
+              diverse projects ranging from bioengineering research tools to
+              autonomous rovers competing on the international stage. Most
+              recently, I've been building software systems for{" "}
+              <a
+                href="https://legacyrobotics.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                Legacy Robotics
+              </a>
+              , where our interdisciplinary team of 25 (Mechanical, Electrical,
+              Computer, Software) engineers developed a competition rover for
+              the{" "}
+              <a
+                href="https://urc.marssociety.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                University Rover Challenge
+              </a>
+              . I've also contributed to research by helping test{" "}
+              <a
+                href="https://lf-edge.atlassian.net/wiki/spaces/LE/pages/15865138/EdgeLake+project+proposal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                EdgeLake
+              </a>{" "}
+              in distributed databases and collaborated with{" "}
+              <a
+                href="https://idtechproducts.com/educating-through-innovation-id-techs-capstone-journey-with-students-at-uci/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                ID Tech Products
+              </a>{" "}
+              to create production-ready Android applications that generated 15+
+              sales leads at industry trade shows.
+            </p>
+
+            <p className="mb-4">
+              What excites me most about software engineering is the ability to
+              create meaningful solutions that bridge complex technical
+              challenges with real-world impact. Whether I'm developing{" "}
+              <a
+                href="https://github.com/santiagopalomares/CellScope"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                cell segmentation tools
+              </a>{" "}
+              for UCI/UCSD researchers with 92% accuracy, building automated
+              waste management systems that improve sorting efficiency by 50%,
+              or designing intuitive user interfaces for robotic control
+              systems, I'm driven by technology's potential to make a
+              difference.
+            </p>
+
+            <p>
+              Beyond coding, I'm deeply committed to community and collaboration
+              through Google Developer Student Club, Peterworks Drones, and the
+              Distributed Databases Research Lab. When I'm not debugging code or
+              fine-tuning algorithms, you'll find me exploring Orange County's
+              incredible food scene, staying active, or planning my next
+              adventure. If you're ever in the area and want to chat about tech
+              over great food, I know just the place!
+            </p>
+          </div>
 
           <div className="pt-4 opacity-0 animate-fade-in-delay-4">
             <a href="#projects" className="cosmic-button">

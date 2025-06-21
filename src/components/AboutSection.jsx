@@ -35,17 +35,29 @@ export const AboutSection = () => {
             </h3>
 
             <p className="text-muted-foreground">
-              I'm a passionate software engineer with experience in both
-              frontend and backend development, focused on building responsive,
-              efficient applications. Currently completing my B.S. in Software
-              Engineering at UC Irvine with a strong academic record.
+              I'm a passionate software engineer specializing in full-stack
+              development and systems engineering. As a recent graduate from{" "}
+              <a
+                href="https://www.ics.uci.edu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                UC Irvine's Software Engineering program
+              </a>
+              , I bring both academic excellence and hands-on experience in
+              building production ready applications that solve real world
+              problems.
             </p>
 
             <p className="text-muted-foreground">
-              My experience ranges from robotics software development to
-              creating interactive UI systems and data analysis. I'm driven by
-              solving complex technical challenges and continuously expanding my
-              technical expertise across multiple domains.
+              My technical journey spans from architecting scalable web
+              platforms to creating Android applications that generate
+              measurable business impact. Whether I'm building real-time data
+              processing systems, developing full-stack applications with modern
+              frameworks, or designing robust backend architectures, I'm driven
+              by the challenge of transforming complex technical requirements
+              into elegant, functional solutions that make a difference.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
