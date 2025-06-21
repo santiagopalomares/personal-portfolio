@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const navItems = [
   { name: "Home", href: "#hero" },
@@ -11,6 +12,7 @@ const navItems = [
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +22,27 @@ export const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    setIsDarkMode(true);
+    document.documentElement.classList.add("dark");
+    document.documentElement.style.colorScheme = "dark";
+  }, []);
+
+  const toggleTheme = () => {
+    const newDarkMode = !isDarkMode;
+
+    if (newDarkMode) {
+      document.documentElement.classList.add("dark");
+      document.documentElement.style.colorScheme = "dark";
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.style.colorScheme = "light";
+    }
+
+    setIsDarkMode(newDarkMode);
+  };
+
   return (
     <nav
       className={cn(
@@ -51,19 +74,19 @@ export const Navbar = () => {
           ))}
         </div>
 
-        {/* mobile nav */}
-
+        {/* mobile nav button */}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="md:hidden p-2 text-foreground z-50"
           aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
+        {/* mobile menu overlay */}
         <div
           className={cn(
-            "fixed inset-0 bg-background/95 backdroup-blur-md z-40 flex flex-col items-center justify-center",
+            "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
             "transition-all duration-300 md:hidden",
             isMenuOpen
               ? "opacity-100 pointer-events-auto"
@@ -81,6 +104,22 @@ export const Navbar = () => {
                 {item.name}
               </a>
             ))}
+            {/* Theme toggle inside mobile menu */}
+            <div className="pt-4 border-t border-foreground/20">
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-full transition-colors duration-300 focus:outline-none"
+                aria-label={
+                  isDarkMode ? "Switch to light mode" : "Switch to dark mode"
+                }
+              >
+                {isDarkMode ? (
+                  <Sun className="h-6 w-6 text-yellow-300" />
+                ) : (
+                  <Moon className="h-6 w-6 text-blue-900" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>
