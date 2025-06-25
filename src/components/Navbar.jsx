@@ -9,10 +9,9 @@ const navItems = [
   { name: "Projects", href: "#projects" },
 ];
 
-export const Navbar = () => {
+export const Navbar = ({ isDarkMode, setIsDarkMode }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -24,15 +23,8 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    setIsDarkMode(true);
-    document.documentElement.classList.add("dark");
-    document.documentElement.style.colorScheme = "dark";
-  }, []);
-
   const toggleTheme = () => {
     const newDarkMode = !isDarkMode;
-
     if (newDarkMode) {
       document.documentElement.classList.add("dark");
       document.documentElement.style.colorScheme = "dark";
@@ -40,7 +32,6 @@ export const Navbar = () => {
       document.documentElement.classList.remove("dark");
       document.documentElement.style.colorScheme = "light";
     }
-
     setIsDarkMode(newDarkMode);
   };
 
@@ -79,8 +70,7 @@ export const Navbar = () => {
           </span>
         </a>
 
-        {/* desktop nav */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-8 items-center">
           {navItems.map((item, key) => (
             <a
               key={key}
@@ -90,15 +80,29 @@ export const Navbar = () => {
               {item.name}
             </a>
           ))}
-          <button
-            onClick={copyEmailToClipboard}
-            className="text-foreground/80 hover:text-primary transition-colors duration-300"
+          <a
+            href="#contact"
+            className="text-foreground/80 hover:text-primary transition-colors duration-300 cursor-pointer"
+            onClick={e => {
+              e.preventDefault();
+              copyEmailToClipboard();
+            }}
           >
             Contact
+          </a>
+          <button
+            onClick={toggleTheme}
+            className="ml-4 p-2 rounded-full transition-colors duration-300 focus:outline-none"
+            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {isDarkMode ? (
+              <Sun className="h-6 w-6 text-yellow-300" />
+            ) : (
+              <Moon className="h-6 w-6 text-blue-900" />
+            )}
           </button>
         </div>
 
-        {/* mobile nav button */}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="md:hidden p-2 text-foreground z-50"
@@ -107,7 +111,6 @@ export const Navbar = () => {
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        {/* mobile menu overlay */}
         <div
           className={cn(
             "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
@@ -128,23 +131,22 @@ export const Navbar = () => {
                 {item.name}
               </a>
             ))}
-            <button
-              onClick={() => {
+            <a
+              href="#contact"
+              className="text-foreground/80 hover:text-primary transition-colors duration-300 cursor-pointer"
+              onClick={e => {
+                e.preventDefault();
                 copyEmailToClipboard();
                 setIsMenuOpen(false);
               }}
-              className="text-foreground/80 hover:text-primary transition-colors duration-300"
             >
               Contact
-            </button>
-            {/* Theme toggle inside mobile menu */}
+            </a>
             <div className="pt-4 border-t border-foreground/20">
               <button
                 onClick={toggleTheme}
                 className="p-2 rounded-full transition-colors duration-300 focus:outline-none"
-                aria-label={
-                  isDarkMode ? "Switch to light mode" : "Switch to dark mode"
-                }
+                aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
               >
                 {isDarkMode ? (
                   <Sun className="h-6 w-6 text-yellow-300" />
