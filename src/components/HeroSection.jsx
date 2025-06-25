@@ -4,7 +4,7 @@ export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-28 md:pt-32"
+      className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-28 md:pt-32 pb-24"
     >
       <div className="container max-w-4xl mx-auto text-center z-10">
         <div className="space-y-6">
@@ -23,7 +23,7 @@ export const HeroSection = () => {
           {/* Desktop version - full content */}
           <div className="hidden md:block text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto opacity-0 animate-fade-in-delay-3">
             <p className="mb-4">
-              Hello, I'm Santiago Palomares, a Software Engineering graduate of{" "}
+              Hello, I'm Santiago Palomares, a recent Software Engineering graduate of{" "}
               <a
                 href="https://www.ics.uci.edu/"
                 target="_blank"
@@ -32,10 +32,10 @@ export const HeroSection = () => {
               >
                 UC Irvine
               </a>{" "}
-              and a passionate Software Engineer fascinated by full-stack
-              development, and robotics systems. Growing up in the Santa Ana
+              and a passionate Software Engineer fascinated by algorithms,
+              and robotics systems. Growing up in the Santa Ana
               area, I learned that persistence and innovation can turn any
-              technical challenge into an opportunity – values that have driven
+              technical challenge into an opportunity, values that have driven
               my journey in technology.
             </p>
 
@@ -72,7 +72,7 @@ export const HeroSection = () => {
               >
                 EdgeLake
               </a>{" "}
-              in distributed databases and collaborated with{" "}
+              a distributed database. I also collaborated with{" "}
               <a
                 href="https://idtechproducts.com/educating-through-innovation-id-techs-capstone-journey-with-students-at-uci/"
                 target="_blank"
@@ -88,7 +88,7 @@ export const HeroSection = () => {
             <p className="mb-4">
               What excites me most about software engineering is the ability to
               create meaningful solutions that bridge complex technical
-              challenges with real-world impact. Whether I'm developing{" "}
+              challenges with real world impact. Whether I'm developing{" "}
               <a
                 href="https://github.com/santiagopalomares/CellScope"
                 target="_blank"
@@ -107,8 +107,8 @@ export const HeroSection = () => {
             <p>
               Beyond coding, I'm deeply committed to community and collaboration
               through Google Developer Student Club, and Peterworks Drones. When
-              I'm not debugging code or fine-tuning algorithms, you'll find me
-              Rock Climbing at Hanger 18, Fishing at Newport Pier, or playing
+              I'm not debugging code or fine tuning algorithms, you'll find me
+              Rock Climbing, Fishing, or playing
               Magic the gathering with friends.
             </p>
           </div>
@@ -125,7 +125,7 @@ export const HeroSection = () => {
               >
                 UC Irvine
               </a>{" "}
-              passionate about full-stack development and systems engineering. I
+              passionate about software development and systems engineering. I
               build production ready applications that solve real world
               problems.
             </p>
@@ -155,12 +155,12 @@ export const HeroSection = () => {
 
             <p>
               When I'm not debugging code or fine-tuning algorithms, you'll find
-              me Rock Climbing at Hanger 18, Fishing at Newport Pier, or playing
+              me Rock Climbing, Fishing, or playing
               Magic the gathering with friends.
             </p>
           </div>
 
-          <div className="pt-4 opacity-0 animate-fade-in-delay-4">
+          <div className="pt-8 mb-8 md:mb-10 opacity-0 animate-fade-in-delay-4">
             <a href="#projects" className="cosmic-button">
               View My Work
             </a>
