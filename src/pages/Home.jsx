@@ -8,7 +8,7 @@ import { ProjectsSection } from "../components/ProjectsSection";
 import { Footer } from "../components/Footer";
 
 export const Home = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
