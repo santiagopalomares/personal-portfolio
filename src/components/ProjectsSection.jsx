@@ -1,4 +1,4 @@
-import { ArrowRight, ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useState } from "react";
 
 const projects = [
@@ -117,7 +117,124 @@ const projects = [
   },
 ];
 
-const ProjectCard = ({ project }) => {
+const ProjectModal = ({ project, isOpen, onClose }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  // Add null check to prevent error
+  if (!isOpen || !project) return null;
+  
+  const images = project.images || [project.image];
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4">
+      <div className="bg-card rounded-lg w-full h-full max-h-[95vh] sm:h-full sm:max-w-4xl sm:max-h-[90vh] flex flex-col">
+        {/* Header */}
+        <div className="flex justify-between items-center p-4 sm:p-6 border-b flex-shrink-0">
+          <h2 className="text-xl sm:text-2xl font-bold truncate pr-4">{project.title}</h2>
+          <button
+            onClick={onClose}
+            className="text-muted-foreground hover:text-foreground transition-colors flex-shrink-0"
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        {/* Image Section */}
+        <div className="relative flex-1 min-h-0">
+          <div className="h-full w-full flex items-center justify-center p-2">
+            <img
+              src={images[currentImageIndex]}
+              alt={project.title}
+              className="max-w-full max-h-full object-contain"
+            />
+          </div>
+          
+          {/* Image carousel controls */}
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-1 sm:p-2 transition-all duration-200"
+              >
+                <ChevronLeft size={16} className="sm:w-5 sm:h-5" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-1 sm:p-2 transition-all duration-200"
+              >
+                <ChevronRight size={16} className="sm:w-5 sm:h-5" />
+              </button>
+              
+              {/* Image indicators */}
+              <div className="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1 sm:space-x-2">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-200 ${
+                      index === currentImageIndex 
+                        ? 'bg-white' 
+                        : 'bg-white/50 hover:bg-white/75'
+                    }`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Content Section */}
+        <div className="p-4 sm:p-6 flex-shrink-0">
+          <p className="text-muted-foreground mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base line-clamp-3 sm:line-clamp-none">
+            {project.description}
+          </p>
+
+          <div className="flex flex-wrap gap-1 sm:gap-2 mb-4 sm:mb-6">
+            {project.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="px-2 py-1 text-xs sm:text-sm font-medium border rounded-full bg-secondary text-secondary-foreground"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex space-x-4">
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-foreground/80 hover:text-primary transition-colors duration-300 text-sm sm:text-base"
+            >
+              <ExternalLink size={18} className="sm:w-5 sm:h-5" />
+              <span>Live Demo</span>
+            </a>
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-foreground/80 hover:text-primary transition-colors duration-300 text-sm sm:text-base"
+            >
+              <Github size={18} className="sm:w-5 sm:h-5" />
+              <span>View Code</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ProjectCard = ({ project, onProjectClick }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = project.images || [project.image];
 
@@ -130,7 +247,10 @@ const ProjectCard = ({ project }) => {
   };
 
   return (
-    <div className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover">
+    <div 
+      className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover cursor-pointer"
+      onClick={() => onProjectClick(project)}
+    >
       <div className="h-48 overflow-hidden relative">
         <img
           src={images[currentImageIndex]}
@@ -142,13 +262,19 @@ const ProjectCard = ({ project }) => {
         {images.length > 1 && (
           <>
             <button
-              onClick={prevImage}
+              onClick={(e) => {
+                e.stopPropagation();
+                prevImage();
+              }}
               className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-1 transition-all duration-200 opacity-0 group-hover:opacity-100"
             >
               <ChevronLeft size={16} />
             </button>
             <button
-              onClick={nextImage}
+              onClick={(e) => {
+                e.stopPropagation();
+                nextImage();
+              }}
               className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-1 transition-all duration-200 opacity-0 group-hover:opacity-100"
             >
               <ChevronRight size={16} />
@@ -159,7 +285,10 @@ const ProjectCard = ({ project }) => {
               {images.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentImageIndex(index)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentImageIndex(index);
+                  }}
                   className={`w-2 h-2 rounded-full transition-all duration-200 ${
                     index === currentImageIndex 
                       ? 'bg-white' 
@@ -196,6 +325,7 @@ const ProjectCard = ({ project }) => {
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="text-foreground/80 hover:text-primary transition-colors duration-300"
             >
               <ExternalLink size={20} />
@@ -204,6 +334,7 @@ const ProjectCard = ({ project }) => {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="text-foreground/80 hover:text-primary transition-colors duration-300"
             >
               <Github size={20} />
@@ -216,6 +347,16 @@ const ProjectCard = ({ project }) => {
 };
 
 export const ProjectsSection = () => {
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProject(null);
+  };
+
   return (
     <section id="projects" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">
@@ -231,7 +372,11 @@ export const ProjectsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, key) => (
-            <ProjectCard key={key} project={project} />
+            <ProjectCard 
+              key={key} 
+              project={project} 
+              onProjectClick={handleProjectClick}
+            />
           ))}
         </div>
 
@@ -246,6 +391,13 @@ export const ProjectsSection = () => {
           </a>
         </div>
       </div>
+
+      {/* Project Modal */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={!!selectedProject}
+        onClose={handleCloseModal}
+      />
     </section>
   );
 };
