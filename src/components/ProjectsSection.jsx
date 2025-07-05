@@ -1,13 +1,25 @@
 import { ArrowRight, ExternalLink, Github, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useState } from "react";
 
+// Import all images
+import CellScopeImg from "../assets/CellScope.png";
+import TrashBuddyDiagramImg from "../assets/TrashBuddy-Diagram.png";
+import TrashBuddyAssemblingImg from "../assets/TrashBuddy-Assembling.jpg";
+import IDTechImg from "../assets/IDTech.png";
+import CiCeroAIImg from "../assets/CiCeroAI.png";
+import ThoughfulBitesImg from "../assets/ThoughfulBites.png";
+import LegacyUINavigationImg from "../assets/LegacyUI-Navigation.png";
+import LegacyUICamsImg from "../assets/LegacyUI-Cams.png";
+import LegacyRoverImg from "../assets/LegacyRover.png";
+import ZotSearchImg from "../assets/ZotSearch.png";
+
 const projects = [
   {
     id: 1,
     title: "CellScope",
     description:
       "Achieved 92% accuracy in analyzing 130+ bioengineering experiment images, automating cell segmentation and feature extraction. Designed a structured tabular dataset capturing both cell-level metrics and image-level summaries for advanced analysis. Developed an interactive query tool for UC San Diego and UCI BME researchers.",
-    images: ["/src/assets/CellScope.png"],
+    images: [CellScopeImg],
     tags: ["Python", "OpenCV", "Scikit-Image", "SQL", "Matplotlib", "Pandas"],
     demoUrl: "#",
     githubUrl: "https://github.com/santiagopalomares/CellScope",
@@ -17,7 +29,7 @@ const projects = [
     title: "TrashBuddy",
     description:
       "Collaborated in building an automated waste management system, achieving a 50% improvement in sorting efficiency by separating recyclables from non-recyclables. Developed and integrated a real-time processing system using ESP32 CAM and servo motors, classifying waste items in under 3 seconds per item.",
-    images: ["/src/assets/TrashBuddy-Diagram.png", "/src/assets/TrashBuddy-Assembling.jpg"],
+    images: [TrashBuddyDiagramImg, TrashBuddyAssemblingImg],
     tags: ["OpenCV", "AWS", "Fusion360", "ESP32", "Computer Vision"],
     demoUrl: "#",
     githubUrl:
@@ -28,7 +40,7 @@ const projects = [
     title: "ID Tech Products",
     description:
       "Delivered 3 production-ready Android applications for AP6800 payment terminal demonstrations, generating 15+ sales leads at industry trade shows. Implemented secure payment processing with zSDK integration supporting 4 transaction methods while maintaining 100% transaction reliability.",
-    images: ["/src/assets/IDTech.png"],
+    images: [IDTechImg],
     tags: ["Kotlin", "Java", "Android", "Figma", "zSDK"],
     demoUrl:
       "https://idtechproducts.com/educating-through-innovation-id-techs-capstone-journey-with-students-at-uci/",
@@ -39,7 +51,7 @@ const projects = [
     title: "CiCero AI",
     description:
       "Built a conversational web-based application that provides intelligent feedback on speaking for interviews, debates, and presentations. Developed during Berkeley hackathon using Hume AI API for real-time speech analysis and coaching insights.",
-    images: ["/src/assets/CiCeroAI.png"],
+    images: [CiCeroAIImg],
     tags: ["Next.js", "Hume AI API", "Tailwind CSS", "JavaScript", "AI/ML"],
     demoUrl: "#",
     githubUrl: "https://github.com/sumtzehern/CiceroAi",
@@ -49,7 +61,7 @@ const projects = [
     title: "ThoughtfulBites",
     description:
       "Developed full-stack restaurant discovery platform for users with dietary restrictions, cutting meal planning time by 45% through personalized filtering algorithms. Built scalable React/TypeScript frontend and Node.js/Express backend with RESTful APIs, powering real-time search across 500+ restaurants.",
-    images: ["/src/assets/ThoughfulBites.png"],
+    images: [ThoughfulBitesImg],
     tags: ["React", "TypeScript", "Node.js", "MySQL", "Google APIs", "AWS"],
     demoUrl: "#",
     githubUrl: "https://github.com/santiagopalomares",
@@ -59,7 +71,7 @@ const projects = [
     title: "Legacy Robotics Base Station UI",
     description:
       "Spearheaded development of real-time mission control dashboard with React and Tailwind CSS, reducing system monitoring time by 40% while facilitating simultaneous oversight of 6+ critical rover subsystems for autonomous navigation and robotic arm control.",
-    images: ["/src/assets/LegacyUI-Navigation.png", "/src/assets/LegacyUI-Cams.png"],
+    images: [LegacyUINavigationImg, LegacyUICamsImg],
     tags: [
       "React",
       "TypeScript",
@@ -76,7 +88,7 @@ const projects = [
     title: "Legacy Robotics Computer Vision & Control",
     description:
       "Developed custom computer vision pipeline using YOLOv10 and Roboflow, securing 96% object detection accuracy by curating 2,000+ image dataset for robotic arm control and autonomous navigation. Pioneered optimization of data streaming pipeline for sensor telemetry, slashing latency by 35%.",
-    images: ["/src/assets/LegacyRover.png"],
+    images: [LegacyRoverImg],
     tags: [
       "Python",
       "YOLOv10",
@@ -93,7 +105,7 @@ const projects = [
     title: "Information Retrieval Search Engine",
     description:
       "Designed full-scale search engine from scratch processing 56,000+ web pages with custom inverted index and TF-IDF ranking algorithm, delivering sub-300ms query response times under memory constraints. Implemented Flask web interface with OpenAI API integration for intelligent query summarization.",
-    images: ["/src/assets/ZotSearch.png"],
+    images: [ZotSearchImg],
     tags: [
       "Python",
       "Flask",
