@@ -6,6 +6,8 @@ import TrashBuddyAssemblingImg from "../assets/TrashBuddy-Assembling.jpg";
 import ThoughfulBitesImg from "../assets/ThoughfulBites.png";
 import CiCeroAIImg from "../assets/CiCeroAI.png";
 import ZotSearchImg from "../assets/ZotSearch.png";
+import TMGameEngineCandyCrushImg from "../assets/TM Game Engine - Candy Crush.png";
+import TMGameEngineTetrisImg from "../assets/TM Game Engine - Tetris.png";
 
 const projects = [
   {
@@ -17,6 +19,7 @@ const projects = [
     ],
     images: [CellScopeImg],
     tags: ["Python", "OpenCV", "SQL", "Computer Vision", "Image Processing"],
+    // No link
   },
   {
     title: "CiCero AI",
@@ -27,6 +30,7 @@ const projects = [
     ],
     images: [CiCeroAIImg],
     tags: ["Next.js", "Tailwind CSS", "API Integration", "Web Development"],
+    // No link
   },
   {
     title: "TM Game Environment",
@@ -36,8 +40,9 @@ const projects = [
       "Implemented two-player local multiplayer support with user profiles and game selection menu.",
       "Delivered complete framework with 2 fully functional games, comprehensive documentation, and step-by-step developer guide."
     ],
-    images: [],
+    images: [TMGameEngineTetrisImg, TMGameEngineCandyCrushImg],
     tags: ["Python", "Software Architecture", "UML Modeling", "Human Interface Design"],
+    // link removed
   },
   {
     title: "ThoughtfulBites",
@@ -48,6 +53,7 @@ const projects = [
     ],
     images: [ThoughfulBitesImg],
     tags: ["UI design", "figma", "Amazon ECS", "MySQL", "React.js"],
+    // No link
   },
   {
     title: "TrashBuddy",
@@ -58,6 +64,7 @@ const projects = [
     ],
     images: [TrashBuddyAssemblingImg, TrashBuddyDiagramImg],
     tags: ["Internet of Things (IoT)", "Postman API", "C++", "Computer Hardware", "AWS Lambda"],
+    // No link
   },
   {
     title: "ZotSearch",
@@ -68,6 +75,7 @@ const projects = [
     ],
     images: [ZotSearchImg],
     tags: ["Python", "DSA", "Flask", "Systems Design"],
+    // No link
   },
 ];
 
@@ -114,7 +122,21 @@ const ProjectCard = ({ project, onProjectClick }) => {
         </div>
       )}
       <div className="p-6 flex flex-col flex-1">
-        <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
+        <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+          {project.title}
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-1 text-primary hover:underline"
+              onClick={e => e.stopPropagation()}
+              title="External Link"
+            >
+              <ArrowRight size={18} />
+            </a>
+          )}
+        </h3>
         <ul className="mb-4 list-disc ml-5 text-muted-foreground text-sm text-left">
           {project.description.map((line, i) => (
             <li key={i}>{line}</li>
@@ -141,7 +163,21 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
       <div className="bg-card rounded-lg w-full h-full max-h-[95vh] sm:h-full sm:max-w-3xl sm:max-h-[90vh] flex flex-col overflow-auto">
         {/* Header */}
         <div className="flex justify-between items-center p-4 sm:p-6 border-b flex-shrink-0">
-          <h2 className="text-xl sm:text-2xl font-bold truncate pr-4">{project.title}</h2>
+          <h2 className="text-xl sm:text-2xl font-bold truncate pr-4 flex items-center gap-2">
+            {project.title}
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-1 text-primary hover:underline"
+                title="External Link"
+                onClick={e => e.stopPropagation()}
+              >
+                <ArrowRight size={20} />
+              </a>
+            )}
+          </h2>
           <button
             onClick={onClose}
             className="text-muted-foreground hover:text-foreground transition-colors flex-shrink-0"
